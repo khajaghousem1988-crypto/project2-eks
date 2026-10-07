@@ -1,0 +1,40 @@
+replicaCount: 1
+
+image:
+  repository: 500788673290.dkr.ecr.us-east-1.amazonaws.com/banking-eks-dev-app
+  tag: "v1.0.1"
+  pullPolicy: IfNotPresent
+
+containerPort: 5000
+
+service:
+  type: ClusterIP
+  port: 80
+  targetPort: 5000
+
+resources:
+  requests:
+    cpu: "50m"
+    memory: "64Mi"
+  limits:
+    cpu: "200m"
+    memory: "256Mi"
+
+probes:
+  readiness:
+    path: /
+    initialDelaySeconds: 10
+    periodSeconds: 10
+
+  liveness:
+    path: /
+    initialDelaySeconds: 20
+    periodSeconds: 20
+
+ingress:
+  enabled: true
+  className: alb
+  scheme: internet-facing
+  targetType: ip
+  healthcheckPath: /
+  successCodes: "200-399"

@@ -1,0 +1,24 @@
+# Terraform runtime/state
+**/.terraform/
+*.tfstate
+*.tfstate.*
+*.tfplan
+tfplan
+ 
+# Python
+**/venv/
+**/.venv/
+**/__pycache__/
+*.py[cod]
+.coverage
+**/.coverage
+.pytest_cache/
+.checkov-venv/
+ 
+# Environment / OS / IDE
+.env
+.env.*
+.DS_Store
+.vscode/
+.idea/
+

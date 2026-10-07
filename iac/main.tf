@@ -25,3 +25,41 @@ locals {
   shared_public_subnet_ids  = data.terraform_remote_state.project1.outputs.public_subnet_ids
   shared_private_subnet_ids = data.terraform_remote_state.project1.outputs.private_subnet_ids
 }
+#####################################################
+# Project 2 — EKS Control Plane
+#####################################################
+
+module "eks" {
+  source = "./modules/eks"
+
+  project_name = var.project_name
+  environment  = var.environment
+
+  private_subnet_ids = local.shared_private_subnet_ids
+}
+
+#####################################################
+# EKS Managed Node Group
+#####################################################
+
+module "eks_node_group" {
+  source = "./modules/eks-node-group"
+
+  project_name = var.project_name
+  environment  = var.environment
+
+  cluster_name       = module.eks.cluster_name
+  private_subnet_ids = local.shared_private_subnet_ids
+
+  instance_types = ["t3.micro"]
+
+  desired_size = 3
+  min_size     = 2
+  max_size     = 3
+}
+module "ecr" {
+  source = "./modules/ecr"
+
+  project_name = var.project_name
+  environment  = var.environment
+}

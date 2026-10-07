@@ -1,0 +1,60 @@
+apiVersion: apps/v1
+kind: Deployment
+
+metadata:
+  name: banking-app
+  namespace: banking-dev
+
+spec:
+  replicas: 1
+
+  # t3.micro nodes have limited pod capacity.
+  # Do not create an additional surge pod during deployment.
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 0
+      maxUnavailable: 1
+
+  selector:
+    matchLabels:
+      app: banking-app
+
+  template:
+    metadata:
+      labels:
+        app: banking-app
+
+    spec:
+      containers:
+        - name: banking-app
+
+          # Project 2 dedicated ECR repository
+          image: 500788673290.dkr.ecr.us-east-1.amazonaws.com/banking-eks-dev-app:v1.0.1
+          imagePullPolicy: IfNotPresent
+
+          ports:
+            - containerPort: 5000
+              protocol: TCP
+
+          resources:
+            requests:
+              cpu: "50m"
+              memory: "64Mi"
+            limits:
+              cpu: "200m"
+              memory: "256Mi"
+
+          readinessProbe:
+            httpGet:
+              path: /
+              port: 5000
+            initialDelaySeconds: 10
+            periodSeconds: 10
+
+          livenessProbe:
+            httpGet:
+              path: /
+              port: 5000
+            initialDelaySeconds: 20
+            periodSeconds: 20

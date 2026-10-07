@@ -19,7 +19,7 @@ variable "environment" {
 variable "project1_state_bucket" {
   description = "S3 bucket containing Project 1 Terraform state"
   type        = string
-  default     = "banking-infra"
+  default     = "banking-infra-dev"
 }
 
 variable "project1_state_key" {
