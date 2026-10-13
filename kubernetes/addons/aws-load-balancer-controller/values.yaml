@@ -2,7 +2,7 @@ clusterName: banking-eks-dev-cluster
  
 region: us-east-1
  
-vpcId: vpc-09bad8c32ee7962c7
+vpcId: vpc-0c9f29f73b47c4a90
  
 replicaCount: 2
  
