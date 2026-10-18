@@ -14,7 +14,7 @@ spec:
       valuesObject:
         clusterName: banking-eks-dev-cluster
         region: us-east-1
-        vpcId: vpc-0f122c9f8aa07c052
+        vpcId: vpc-0777c8323de9cd1c5
 
         replicaCount: 2
  

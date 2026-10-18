@@ -1,10 +1,10 @@
 clusterName: banking-eks-dev-cluster
 region: us-east-1
-vpcId: vpc-0f122c9f8aa07c052
+vpcId: vpc-0777c8323de9cd1c5 
 replicaCount: 2
 
 serviceAccount:
-  create: true
+  create: false
   name: aws-load-balancer-controller
   annotations:
     eks.amazonaws.com/role-arn: arn:aws:iam::271357389785:role/AmazonEKSLoadBalancerControllerRole

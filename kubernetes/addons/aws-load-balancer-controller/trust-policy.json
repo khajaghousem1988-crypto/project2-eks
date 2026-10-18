@@ -1,18 +1,18 @@
 {
-  "Version": "2012-10-17",
-  "Statement": [
-    {
-      "Effect": "Allow",
-      "Principal": {
-        "Federated": "arn:aws:iam::271357389785:oidc-provider/oidc.eks.us-east-1.amazonaws.com/id/357D533533AF82432D2CC71C0D83E1D4"
-      },
-      "Action": "sts:AssumeRoleWithWebIdentity",
-      "Condition": {
-        "StringEquals": {
-          "oidc.eks.us-east-1.amazonaws.com/id/357D533533AF82432D2CC71C0D83E1D4:sub": "system:serviceaccount:kube-system:aws-load-balancer-controller",
-          "oidc.eks.us-east-1.amazonaws.com/id/357D533533AF82432D2CC71C0D83E1D4:aud": "sts.amazonaws.com"
-        }
-      }
-    }
-  ]
+ "Version": "2012-10-17",
+ "Statement": [
+   {
+     "Effect": "Allow",
+     "Principal": {
+       "Federated": "arn:aws:iam::271357389785:oidc-provider/oidc.eks.us-east-1.amazonaws.com/id/6C5115B52CCD4276282C49BBB07CE44B"
+     },
+     "Action": "sts:AssumeRoleWithWebIdentity",
+     "Condition": {
+       "StringEquals": {
+         "oidc.eks.us-east-1.amazonaws.com/id/6C5115B52CCD4276282C49BBB07CE44B:aud": "sts.amazonaws.com",
+         "oidc.eks.us-east-1.amazonaws.com/id/6C5115B52CCD4276282C49BBB07CE44B:sub": "system:serviceaccount:banking-dev:aws-load-balancer-controller"
+       }
+     }
+   }
+ ]
 }
